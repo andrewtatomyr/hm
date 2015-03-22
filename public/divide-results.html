@@ -1,0 +1,64 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Divide Me</title>
+  <link rel="stylesheet" type="text/css" href="res/style.css">
+</head>
+<body>
+  <div id="banner"></div>
+  <div id="sticker"   >:?</div>
+  <div id=test>*</div>
+  <div id=link><a href="divideme.html"><-</a></div>
+
+  <div class="container">
+    <div class="main-text shadowed-main-text" >Table of Results</div>
+    <div id=tab></div>
+    <div class="main-text shadowed-main-text" >Standart deviation is <span id='std-dev'></span></div>
+
+  </div -->
+
+
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="./jquery-cookie-master/src/jquery.cookie.js"></script>
+  <script src="core.js"></script>
+
+
+
+  <script>
+    var diff= [];
+    diff[2]= $.cookie("diff2");
+    diff[3]= $.cookie("diff3");
+    diff[4]= $.cookie("diff4");
+    diff[5]= $.cookie("diff5");
+
+    /**
+    var getUrlVars= function() {
+      return window.location.href.slice(window.location.href.indexOf('?')).split(/[&?]{1}[\w\d]+=/);
+    }
+    var urlVars= getUrlVars();
+    console.log(urlVars['diff2']);
+    /**/
+
+
+    var tab="<table align=center style='font-family: Minecraft Minimalist; font-size:20; text-align: center;' >";
+    tab+="<tr><th>[Denominator] </th><th> [Accuracy]</th></tr>";
+    for (var key in diff) {
+      tab+="<tr><td>"+key+"</td><td>"+(100-Math.round(diff[key]*100)/1)+"%</td></tr>";
+    }
+    tab+="</table>";
+
+
+    $('#tab').html(tab);
+
+    var stdDev= $.cookie("stddev");
+    var E= Math.round( Math.log(stdDev)/Math.log(10) );
+    var N= 1/Math.pow(10,E-1);
+    console.log(E+" | "+N);
+    $('#std-dev').text(""+(  Math.round( stdDev*N )/N  ));
+
+
+  </script>
+
+</body>
+</html>
