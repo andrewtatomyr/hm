@@ -7,14 +7,17 @@ var bodyParser= require("body-parser");
 var methodOverride= require("method-override");
 
 // configuration
+/**/
+app.set('port', (process.env.PORT || 5000));//
+/**/
 app.use(express.static(__dirname+'/public'));
-mongoose.connect('mongodb://todo:12345678@proximus.modulusmongo.net:27017/umud5adU'); //my own on modulus.io: { "login": "todo", "password": "12345678" }
+//mongoose.connect('mongodb://todo:12345678@proximus.modulusmongo.net:27017/umud5adU'); //my own on modulus.io: { "login": "todo", "password": "12345678" }
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({'extended': 'true'}));
 app.use(bodyParser.json());
 app.use(bodyParser.json({ type: "application/vnd.api+json"}));
 app.use(methodOverride());
-
+/*
 // define model
 var Todo= mongoose.model("Todo", { text: String });
 
@@ -71,7 +74,7 @@ var Todo= mongoose.model("Todo", { text: String });
 
 
   });
-
+*/
 // application
 app.get('*', function(req, res) {
   res.sendfile('./public/index.html');
@@ -80,5 +83,11 @@ app.get('*', function(req, res) {
 
 
 // listen
+/**
 app.listen(8080);
 console.log("App listened on port 8080");
+/**/
+app.listen(app.get('port'), function() {
+  console.log("Node app is running at localhost:" + app.get('port'));
+});
+/**/
