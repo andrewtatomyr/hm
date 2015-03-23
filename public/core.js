@@ -183,7 +183,7 @@ $(document).ready(function() {
       (segmentLength-xClick)/segmentLength
     );
 
-    diff[denominator]=  /**denominator */**/  Math.abs( (results[denominator]-1/denominator) );
+    diff[denominator]=  /** denominator* /**/  Math.abs( (results[denominator]-1/denominator) );
 
     console.log(xClick+" | "+segmentLength+" | "+denominator+" => { "+results[denominator]+" | "+diff[denominator]+" }");
 
