@@ -1,6 +1,4 @@
-//var dx= 0;
-var results= [];
-var diff= [];
+var results= [], diff= [], accuracy= [];
 
 $(document).ready(function() {
   console.log("PAGE HAS ALREADY LOADED");
@@ -185,10 +183,12 @@ $(document).ready(function() {
 
     diff[denominator]=  /**/ denominator* /**/  Math.abs( (results[denominator]-1/denominator) );
 
-    console.log(xClick+" | "+segmentLength+" | "+denominator+" => { "+results[denominator]+" | "+diff[denominator]+" }");
+    accuracy[denominator]= 100* ( 1-diff[denominator] + Math.abs( 1-diff[denominator] ) )/2;
+
+    //console.log(xClick+" | "+segmentLength+" | "+denominator+" => { "+results[denominator]+" | "+diff[denominator]+" }");
 
     if (FLAG_showResults) {
-      var _path='?';
+      //var _path='?';
       var stdDev= 0;
       var n= 0;
       for (var key in diff) {
@@ -196,15 +196,15 @@ $(document).ready(function() {
         stdDev+=Math.pow( diff[key] , 2 );
         n++;
 
-        _path+="diff"+key+"="+diff[key]+"&";
-        $.cookie("diff"+key, diff[key], { expires: 1, path: '/'});
+        //_path+="diff"+key+"="+diff[key]+"&";
+        $.cookie("accuracy"+key, accuracy[key], { expires: (1/24/60), path: '/'});
       }
       stdDev=Math.sqrt( stdDev/(n-1) );
       $.cookie("stddev", stdDev, { expires: 1, path: '/'});
 
       // input to db
 
-      window.location = "divide-results.html"+_path+'blbl=blbl';
+      window.location = "divide-results.html"/*+_path+'blbl=blbl'*/;
     }
 
   });

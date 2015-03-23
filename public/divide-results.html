@@ -27,11 +27,11 @@
 
 
   <script>
-    var diff= [];
-    diff[2]= $.cookie("diff2");
-    diff[3]= $.cookie("diff3");
-    diff[4]= $.cookie("diff4");
-    diff[5]= $.cookie("diff5");
+    var accuracy= [];
+    accuracy[2]= $.cookie("accuracy2");
+    accuracy[3]= $.cookie("accuracy3");
+    accuracy[4]= $.cookie("accuracy4");
+    accuracy[5]= $.cookie("accuracy5");
 
     /**
     var getUrlVars= function() {
@@ -44,8 +44,8 @@
 
     var tab="<table align=center style='font-family: Minecraft Minimalist; font-size:20; text-align: center;' >";
     tab+="<tr><th>[Denominator] </th><th> [Accuracy]</th></tr>";
-    for (var key in diff) {
-      tab+="<tr><td>"+key+"</td><td>"+(100-Math.round(diff[key]*100)/1)+"%</td></tr>";
+    for (var key in accuracy) {
+      tab+="<tr><td>"+key+"</td><td>"+Math.round(accuracy[key])+"%</td></tr>";
     }
     tab+="</table>";
 
