@@ -1,7 +1,17 @@
 var results= [], diff= [], accuracy= [];
 
 $(document).ready(function() {
-  console.log("PAGE HAS ALREADY LOADED");
+  console.log("PAGE HAS LOADED");
+
+  var uhid= $.cookie("uhid");
+  if (uhid==='undefined') {//???????????????????????????
+    uhid= 1;//Math.random(100000,999999);
+    $.cookie("uhid")= uhid;
+    console.log("COOKIE 'uhid' SET AS "+uhid);
+  } else {
+    console.log("COOKIE 'uhid' HAS ALREADY SETTED AS "+uhid);
+  }
+
   var sum= 0; //there I should read dafa from the db
 
   var choiceAction= function(element) {
@@ -45,8 +55,8 @@ $(document).ready(function() {
     }
 
 
-  } else {
-    var myMood= 0;
+  } else { //??????????/
+    //var myMood= 0;
   }
 
   $('.buttons').mouseenter(function() {
