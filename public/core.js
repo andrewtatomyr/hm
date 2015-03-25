@@ -1,15 +1,17 @@
 var results= [], diff= [], accuracy= [];
+var cookieExp= 1/24/60;
 
 $(document).ready(function() {
   console.log("PAGE HAS LOADED");
 
   var uhid= $.cookie("uhid");
-  if (uhid==='undefined') {//???????????????????????????
-    uhid= 1;//Math.random(100000,999999);
-    $.cookie("uhid")= uhid;
-    console.log("COOKIE 'uhid' SET AS "+uhid);
-  } else {
+  if (uhid/*==null*/) {
     console.log("COOKIE 'uhid' HAS ALREADY SETTED AS "+uhid);
+  } else {
+
+    uhid= 100000;//Math.random(100000,999999);
+    $.cookie("uhid", uhid, { expires: cookieExp, path: '/'});//$.cookie("uhid")= uhid;
+    console.log("COOKIE 'uhid' SET AS "+uhid);
   }
 
   var sum= 0; //there I should read dafa from the db
@@ -44,7 +46,7 @@ $(document).ready(function() {
     });
   }
 
-  if ($.cookie("my_mood")!=='undefined') {
+  if ($.cookie("my_mood")/*!=='undefined'*/) {
     var myMood= $.cookie("my_mood");
     console.log("MY MOOD: "+myMood);
     switch (myMood) {
@@ -81,7 +83,7 @@ $(document).ready(function() {
     choiceAction($(this));
 
     $('div#sticker').text(':)');
-    $.cookie("my_mood", '1', { expires: 1, path: '/'});
+    $.cookie("my_mood", '1', { expires: cookieExp, path: '/'});
     console.log("CHOICE: "+$.cookie("my_mood"));
 
     sum+=1; //and there I should write data to the db
@@ -93,7 +95,7 @@ $(document).ready(function() {
     choiceAction($(this));
 
     $('div#sticker').text(':|');
-    $.cookie("my_mood", '0', { expires: 1, path: '/'});
+    $.cookie("my_mood", '0', { expires: cookieExp, path: '/'});
     console.log("CHOICE: "+$.cookie("my_mood"));
 
     //$('span#world-happiness').text(sum);
@@ -104,7 +106,7 @@ $(document).ready(function() {
     choiceAction($(this));
 
     $('div#sticker').text(':(');
-    $.cookie("my_mood", '-1', { expires: 1, path: '/'});
+    $.cookie("my_mood", '-1', { expires: cookieExp, path: '/'});
     console.log("CHOICE: "+$.cookie("my_mood"));
 
     sum-=1;
@@ -207,10 +209,10 @@ $(document).ready(function() {
         n++;
 
         //_path+="diff"+key+"="+diff[key]+"&";
-        $.cookie("accuracy"+key, accuracy[key], { expires: (1/24/60), path: '/'});
+        $.cookie("accuracy"+key, accuracy[key], { expires: cookieExp, path: '/'});
       }
       stdDev=Math.sqrt( stdDev/(n-1) );
-      $.cookie("stddev", stdDev, { expires: 1, path: '/'});
+      $.cookie("stddev", stdDev, { expires: cookieExp, path: '/'});
 
       // input to db
 
