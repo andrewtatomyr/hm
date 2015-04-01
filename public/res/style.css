@@ -2,12 +2,12 @@
   font-family: Sand;
   src: url(sand.ttf);
 }
-
+/*
 @font-face {
   font-family: Square Monotype;
   src: url(square-monotype.ttf);
 }
-
+*/
 @font-face {
   font-family: Minecraft Minimalist;
   src: url(minecraft-minimalist.ttf);
@@ -36,11 +36,11 @@ div {
 }
 
 #world-happiness {
-  font-family: Square Monotype, Segoe WP, Segoe UI;
+  font-family: Sand, Segoe WP, Segoe UI;
 }
 
 #std-dev {
-  font-family: Square Monotype, Segoe WP, Segoe UI;
+  font-family: Sand, Segoe WP, Segoe UI;
 }
 
 #sticker {
