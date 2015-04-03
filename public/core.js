@@ -7,13 +7,13 @@ $(document).ready(function() {
   var urid= $.cookie("urid");
   if (urid/*==null*/) {
     console.log("COOKIE 'urid' HAS ALREADY SETTED AS "+urid);
-    $.cookie("urid", urid, { expires: cookieExp, path: '/'});
+    //$.cookie("urid", urid, { expires: cookieExp, path: '/'});
   } else {
-
     urid= Math.floor( Math.random()*(999999-100000+1) + 100000 );//100000;//Math.random(100000,999999);
-    $.cookie("urid", urid, { expires: cookieExp, path: '/'});
+    //$.cookie("urid", urid, { expires: cookieExp, path: '/'});
     console.log("COOKIE 'urid' SET AS "+urid);
   }
+  $.cookie("urid", urid, { expires: cookieExp, path: '/'});
 
   var sum= 0; //there I should read dafa from the db
 
