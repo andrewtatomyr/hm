@@ -4,14 +4,15 @@ var cookieExp= 1/24/60;
 $(document).ready(function() {
   console.log("PAGE HAS LOADED");
 
-  var uhid= $.cookie("uhid");
-  if (uhid/*==null*/) {
-    console.log("COOKIE 'uhid' HAS ALREADY SETTED AS "+uhid);
+  var urid= $.cookie("urid");
+  if (urid/*==null*/) {
+    console.log("COOKIE 'urid' HAS ALREADY SETTED AS "+urid);
+    $.cookie("urid", urid, { expires: cookieExp, path: '/'});
   } else {
 
-    uhid= 100000;//Math.random(100000,999999);
-    $.cookie("uhid", uhid, { expires: cookieExp, path: '/'});//$.cookie("uhid")= uhid;
-    console.log("COOKIE 'uhid' SET AS "+uhid);
+    urid= Math.floor( Math.random()*(999999-100000+1) + 100000 );//100000;//Math.random(100000,999999);
+    $.cookie("urid", urid, { expires: cookieExp, path: '/'});
+    console.log("COOKIE 'urid' SET AS "+urid);
   }
 
   var sum= 0; //there I should read dafa from the db
