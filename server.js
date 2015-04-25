@@ -59,27 +59,31 @@ var Level= mongoose.model("Level", LevelSchema);
         res.json(levels);
       }
     });
+    
   });
-/*
-  app.post("/api/todos", function(req,res) {
-    Todo.create({
-      text: req.body.text,
-      done: false
-    }, function(err, todo) {
-      if (err) {
-        res.send(err);
-      }
-    });
+/**/
+  app.get("/api/set-hl", function(req,res) {
 
-    Todo.find(function(err,todos) {
+    Level.create({ //save??
+      //urid: 120440,
+      hl: -2
+    }, function(err, level  ) {
       if (err) {
         res.send(err);
       } else {
-        res.json(todos);
+        console.log('hl created');
+        Level.find(function(err,levels) {
+          if (err) {
+            res.send(err);
+          } else {
+            res.json(levels);
+          }
+        });
       }
     });
-  });
 
+  });
+/*
   app.delete('/api/todos/:todo_id', function(req, res) {
     Todo.remove({
       _id: req.param.todo_id
