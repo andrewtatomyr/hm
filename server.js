@@ -2,32 +2,57 @@
 var express= require("express");
 var app= express();
 var mongoose= require("mongoose");
-var morgan= require("morgan");
-var bodyParser= require("body-parser");
-var methodOverride= require("method-override");
+//var morgan= require("morgan");
+//var bodyParser= require("body-parser");
+//var methodOverride= require("method-override");
+
+
+
 
 // configuration
+
+/**/
+mongoose.connect('mongodb://hm:12345678@proximus.modulusmongo.net:27017/umud5adU'); //my own on modulus.io: { "login": "todo", "password": "12345678" }
+
 /**/
 app.set('port', (process.env.PORT || 5000));//
 /**/
 app.use(express.static(__dirname+'/public'));
-//mongoose.connect('mongodb://todo:12345678@proximus.modulusmongo.net:27017/umud5adU'); //my own on modulus.io: { "login": "todo", "password": "12345678" }
-app.use(morgan("dev"));
-app.use(bodyParser.urlencoded({'extended': 'true'}));
-app.use(bodyParser.json());
-app.use(bodyParser.json({ type: "application/vnd.api+json"}));
-app.use(methodOverride());
-/*
+//app.use(morgan("dev"));
+//app.use(bodyParser.urlencoded({'extended': 'true'}));
+//app.use(bodyParser.json());
+//app.use(bodyParser.json({ type: "application/vnd.api+json"}));
+//app.use(methodOverride());
+
+
+
+
+
+
+/**/
 // define model
-var Todo= mongoose.model("Todo", { text: String });
+
+// Здесь создаём схемы и модели.
+var LevelSchema = new mongoose.Schema({
+
+  hl: Number
+
+});
+
+
+var Level= mongoose.model("Level", LevelSchema);
 
 // routes
 
   // api
 
-  app.get("/api/todos", function(req,res) {
 
-    Todo.find(function(err,todos) {
+
+
+
+  app.get("/api/get-hl", function(req,res) {
+
+    Level.find(function(err,levels) {
       if (err) {
         res.send(err);
       } else {
@@ -35,7 +60,7 @@ var Todo= mongoose.model("Todo", { text: String });
       }
     });
   });
-
+/*
   app.post("/api/todos", function(req,res) {
     Todo.create({
       text: req.body.text,
@@ -75,10 +100,18 @@ var Todo= mongoose.model("Todo", { text: String });
 
   });
 */
+
+
+
+
+
+
 // application
 app.get('*', function(req, res) {
   res.sendfile('./public/index.html');
 });
+
+
 
 
 

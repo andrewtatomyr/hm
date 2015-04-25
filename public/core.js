@@ -6,7 +6,7 @@ $(document).ready(function() {
 
   var urid= $.cookie("urid");
   if (urid/*==null*/) {
-    console.log("COOKIE 'urid' HAS ALREADY SETTED AS "+urid);
+    console.log("COOKIE 'urid' HAS ALREADY SET AS "+urid);
     //$.cookie("urid", urid, { expires: cookieExp, path: '/'});
   } else {
     urid= Math.floor( Math.random()*(999999-100000+1) + 100000 );//100000;//Math.random(100000,999999);
