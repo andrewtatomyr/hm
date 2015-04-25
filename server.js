@@ -39,7 +39,7 @@ var LevelSchema = new mongoose.Schema({
 
 });
 
-
+console.log("creating model 'Level'");
 var Level= mongoose.model("Level", LevelSchema);
 
 // routes
@@ -56,7 +56,7 @@ var Level= mongoose.model("Level", LevelSchema);
       if (err) {
         res.send(err);
       } else {
-        res.json(todos);
+        res.json(levels);
       }
     });
   });
